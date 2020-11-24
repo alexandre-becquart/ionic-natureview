@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ajouter NatureView</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="natureViewForm" (ngSubmit)="onSubmitForm()">
+    <ion-list>
+      <ion-item>
+        <ion-label type="floating">Nom</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label type="floating">Date</ion-label>
+        <ion-datetime display-format="D/MM/YYYY" formControlName="date"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label type="floating">Description</ion-label>
+        <ion-textarea formControlName="description"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-button type="button" (click)="onOpenCoordsModal()" expand="full">
+      <ion-icon slot="start" name="flag"></ion-icon>
+      Ajouter lieu
+    </ion-button>
+    <ion-list *ngIf="latitude">
+      <ion-item>
+        <p>Latitude: {{latitude?.toFixed(2)}} - Longitude: {{longitude?.toFixed(2)}} </p>
+      </ion-item>
+      <ion-item *ngIf="imageUrl">
+        <img [src]="imageUrl" style="max-width: 100%;">
+        <p>{{imageUrl}}</p>
+        <!-- <p>{{safeImg}}</p> -->
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-text-center">
+      <ion-button (click)="onTakePhoto()" size="large"  shape="round">
+        <ion-icon  name="camera"></ion-icon>
+      </ion-button>
+    </div>
+    <ion-button type="submit" expand="full" [disabled]="natureViewForm.invalid || !latitude || !longitude">
+      Enregister
+    </ion-button>
+  </form>
+
+</ion-content>

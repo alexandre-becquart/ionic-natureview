@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">       
+      <ion-button (click)="goAddNatureView()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      NatureView
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card *ngFor="let view of natureViewList" (click)="onLoadNatureView(view)">
+    <img [src]="view.imagePath" [alt]="view.imagePath" >
+    <ion-card-title >{{view.name}}</ion-card-title>
+    <ion-card-content>
+      {{view.description}}
+      {{view.imagePath}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
